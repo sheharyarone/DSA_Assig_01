@@ -54,6 +54,12 @@ void writeToFile(node *headNode) //write the linked list to a text file
   dictFile.close();
   cout << "\e[0;32mDictionary entries added.\x1b[0m\n";
 }
+void printReverse(node *headNode){
+    if(headNode!=NULL){
+      printReverse(headNode->next);
+      cout<<headNode->data<<endl;
+    }
+}
 
 
 // void mainMenu() //menu function
