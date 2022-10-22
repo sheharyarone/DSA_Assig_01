@@ -15,12 +15,12 @@ void readFileData(linkedList *headNode) // reads text from a file and writes it 
   // cin.ignore();
   // cin>>filename;
   fin.open("words.txt");
-  if(fin.is_open())
+  if (fin.is_open())
     cout << "\e[0;32mFile reading succesful.\x1b[0m\n";
 
   while (fin >> word) // write into file name
   {
-    
+
     fin.ignore();
     getline(fin, meaning);
     dict = new Dictionary(word, meaning);
@@ -30,37 +30,60 @@ void readFileData(linkedList *headNode) // reads text from a file and writes it 
   fin.close();
 }
 
-
-void writeToFile(node *headNode) //write the linked list to a text file
+void writeToFile(node *headNode) // write the linked list to a text file
 {
   string word, meaning;
 
-  fstream dictFile; //create fstream object for the file
+  fstream dictFile; // create fstream object for the file
   cout << "\e[46mEnter the filename\x1b[0m ";
-	// cin.ignore();
+  // cin.ignore();
   // cin >> filename;
 
-  dictFile.open("writing_words.txt", std::ios::app); //create/open a text file in append mode. new information is always added to the end
+  dictFile.open("writing_words.txt", std::ios::app); // create/open a text file in append mode. new information is always added to the end
 
   node *iterator = headNode;
 
-  while(iterator != NULL) { //iterate over the linked list
+  while (iterator != NULL)
+  { // iterate over the linked list
     word = iterator->data.word;
     meaning = iterator->data.meaning;
     dictFile << word;
-    dictFile << " " << meaning << endl; //write to data file
-    iterator = iterator->next;   //advance to next node
+    dictFile << " " << meaning << endl; // write to data file
+    iterator = iterator->next;          // advance to next node
   }
   dictFile.close();
   cout << "\e[0;32mDictionary entries added.\x1b[0m\n";
 }
-void printReverse(node *headNode){
-    if(headNode!=NULL){
-      printReverse(headNode->next);
-      cout<<headNode->data<<endl;
-    }
+void printReverse(node *headNode)
+{
+  if (headNode != NULL)
+  {
+    printReverse(headNode->next);
+    cout << headNode->data << endl;
+  }
 }
 
+linkedList *reverseList(linkedList *headNode)
+{
+  // returns a linked list that is the reverse of the original list
+  node *current, *next, *prev;
+
+  prev = nullptr;
+  headNode->tail = headNode->head;
+  current = headNode->head;
+  while (current != NULL)
+  {
+    next = current->next;
+
+    current->next = prev;
+
+    prev = current;
+    current = next;
+  }
+  headNode->head = prev;
+  
+  return headNode;
+}
 
 // void mainMenu() //menu function
 // {

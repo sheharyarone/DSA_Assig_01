@@ -8,7 +8,11 @@ int main()
   linkedList *p=new linkedList();
   readFileData(p);
   // writeToFile(p->head);
-  printReverse(p->head);
+  // printReverse(p->head);
+
+  // linkedList *f=reverseList(p);
+  // f->printll();
+  
   return 0;
 
 }
