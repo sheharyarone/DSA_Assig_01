@@ -10,8 +10,8 @@ int main()
   // writeToFile(p->head);
   // printReverse(p->head);
 
-  // linkedList *f=reverseList(p);
-  // f->printll();
+  linkedList *f=reverseList(p);
+  f->printll();
   
   return 0;
 
