@@ -24,36 +24,36 @@ void readFileData(linkedList *headNode) // reads text from a file and writes it 
     fin.ignore();
     getline(fin, meaning);
     dict = new Dictionary(word, meaning);
-    cout<<*dict<<endl;
+    // cout<<*dict<<endl;
     headNode->insertSorted(*dict);
   }
   fin.close();
 }
 
 
-// void writeToFile(node *headNode) //write the linked list to a text file
-// {
-//   string word, meaning;
+void writeToFile(node *headNode) //write the linked list to a text file
+{
+  string word, meaning;
 
-//   fstream dictFile; //create fstream object for the file
-//   cout << "\e[46mEnter the filename\x1b[0m ";
-// 	// cin.ignore();
-//   // cin >> filename;
+  fstream dictFile; //create fstream object for the file
+  cout << "\e[46mEnter the filename\x1b[0m ";
+	// cin.ignore();
+  // cin >> filename;
 
-//   dictFile.open("writing_words.txt", std::ios::app); //create/open a text file in append mode. new information is always added to the end
+  dictFile.open("writing_words.txt", std::ios::app); //create/open a text file in append mode. new information is always added to the end
 
-//   node *iterator = headNode;
+  node *iterator = headNode;
 
-//   while(iterator != NULL) { //iterate over the linked list
-//     word = iterator->data.word;
-//     meaning = iterator->data.meaning;
-//     dictFile << word;
-//     dictFile << " " << meaning << endl; //write to data file
-//     iterator = iterator->next;   //advance to next node
-//   }
-//   dictFile.close();
-//   cout << "\e[0;32mDictionary entries added.\x1b[0m\n";
-// }
+  while(iterator != NULL) { //iterate over the linked list
+    word = iterator->data.word;
+    meaning = iterator->data.meaning;
+    dictFile << word;
+    dictFile << " " << meaning << endl; //write to data file
+    iterator = iterator->next;   //advance to next node
+  }
+  dictFile.close();
+  cout << "\e[0;32mDictionary entries added.\x1b[0m\n";
+}
 
 
 // void mainMenu() //menu function
