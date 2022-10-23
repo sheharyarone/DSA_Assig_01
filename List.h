@@ -113,68 +113,12 @@ public:
     cout << endl;
   }
 
-  // int search(int val) const{
-  //     node * temp = head;
-  //     int idx =0;
-  //     while(temp != nullptr){
-  //         if (temp->data == val){
-  //             return idx;
-  //         }
-  //         temp = temp->next;
-  //         idx++;
-  //     }
-  //     return -1;
-  // }
-
-  // void delidx(int idx){
-  //     if (idx ==0){
-  //         node * k = head;
-  //         head = head->next;
-  //         delete k;
-  //         return;
-
-  //     }
-  //     else if (idx == length()-1){
-  //         node * temp = head;
-  //         while (temp->next->next != nullptr){
-  //             temp = temp->next;
-  //         }
-  //         node * todel = temp->next;
-  //         tail = temp;
-  //         tail->next = nullptr;
-  //         delete todel;
-  //         return;
-  //     }
-  //     node * temp = head;
-  //     for (int i = 0; i < idx-1; i++) {
-  //         temp = temp->next;
-  //     }
-  //     node * n = temp->next;
-  //     temp->next = temp->next->next;
-  //     delete n;
-  // }
-
-  // void delval(int val){
-  //     int didx =search(val);
-  //     if (didx == -1){
-  //         return;
-  //     }
-  //     delidx(didx);
-  // }
-
-  // void destroy(){
-  //     int i =0;
-  //     while(i < length()){
-  //         delidx(i);
-  //     }
-  //     head = nullptr;
-  //     tail = nullptr;
-  // }
-
   void insertSorted(Dictionary dict)
   {
-    if(head==NULL){
+    if (head == NULL)
+    {
       insertAtHead(dict);
+      return;
     }
     node *temp = head;
 
@@ -182,7 +126,6 @@ public:
 
     while (temp->data < dict)
     {
-
       if (temp->next == nullptr)
       {
         insertAtTail(dict);
@@ -194,5 +137,3 @@ public:
     insertAtPos(dict, n);
   }
 };
-
-// PASTE YOUR LINKED LIST CODE HERE
