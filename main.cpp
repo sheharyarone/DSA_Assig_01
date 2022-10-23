@@ -7,7 +7,7 @@ int main()
   // mainMenu(); //call the main menu function from Parser.h
   linkedList *p=new linkedList();
   readFileData(p);
-  writeToFile(p->head);
+  // writeToFile(p->head);
   // printReverse(p->head);
   // p->printll();
 
@@ -17,6 +17,8 @@ int main()
   // linkedList *f=  filterByLetters(p,'i');
   // f->printll();
 
+  linkedList *f=rearrangeByEvenOddLength(p);
+  f->printll();
   return 0;
 
 }

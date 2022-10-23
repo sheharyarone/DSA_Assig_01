@@ -124,22 +124,71 @@ linkedList *filterByLetters(linkedList *headNode, char letter)
   {
     if (is_matching(loc, letter))
     {
-      ploc->next=loc;
-      ploc=loc;
-      loc=loc->next;
+      ploc->next = loc;
+      ploc = loc;
+      loc = loc->next;
     }
     else
     {
-      temp=loc;
-      loc=loc->next;
+      temp = loc;
+      loc = loc->next;
       delete temp;
     }
   }
-  ploc->next=NULL;
-  headNode->tail=ploc;
+  ploc->next = NULL;
+  headNode->tail = ploc;
 
   return headNode;
 }
+
+linkedList *rearrangeByEvenOddLength(linkedList *headNode)
+{
+  // rearrange the list so that all the words with even length are at
+  //  the front
+  // and all the words with odd length are at the back
+  // return the list
+  node *oddFirst, *loc, *ploc, *sloc;
+  sloc = headNode->head->next;
+  ploc = headNode->head; // ODD ONE
+  loc = headNode->head;  // EVEN ONE
+  while (loc->data.word.length() % 2 != 0 && loc != NULL)
+  {
+    loc = loc->next;
+  }
+  while (ploc->data.word.length() % 2 == 0 && ploc != NULL)
+  {
+    ploc = ploc->next;
+  }
+  headNode->head=loc;
+  oddFirst = ploc;
+  
+  while (sloc != nullptr )
+  {
+    if(sloc==ploc || sloc==loc) {
+      sloc=sloc->next;
+      continue;
+    }
+    if (sloc->data.word.length() % 2 == 0)
+    {
+      loc->next = sloc;
+      loc=loc->next;
+      // cout<<loc->data.word<<endl;
+    }
+    else
+    {
+      ploc->next = sloc;
+      ploc=ploc->next;
+    }
+    sloc = sloc->next;
+    // cout<<sloc->data.word<<endl;
+
+  }
+  loc->next = oddFirst;
+  ploc->next = nullptr;
+  headNode->tail = ploc;
+  return headNode;
+}
+
 // void mainMenu() //menu function
 // {
 //   string word, meaning; //stores the word and meaning
