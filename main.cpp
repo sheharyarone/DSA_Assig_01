@@ -6,19 +6,27 @@ int main()
 {
   // mainMenu(); //call the main menu function from Parser.h
   linkedList *p=new linkedList();
+
+  // MPDULE 1
   readFileData(p);
-  // writeToFile(p->head);
-  // printReverse(p->head);
+  // cout<<"PRINTING NODES OF SINGLY LINKED LIST READ FROM FILE :"<<endl;
   // p->printll();
+  // MODULE 2
+  // writeToFile(p->head);
 
-  // linkedList *f=reverseList(p);
-  // f->printll();
+  // MODULE 3
+  // cout<<"PRINTING THE LIST IN REVERSE ORDER:"<<endl;
+  // printReverse(p->head);
+
+  // MODULE 4
+  // writeToFile(reverseList(p->head,p->tail));
   
-  // linkedList *f=  filterByLetters(p,'i');
-  // f->printll();
+  // MODULE 5
+  // writeToFile(filterByLetters(p->head,'i'));
 
-  linkedList *f=rearrangeByEvenOddLength(p);
-  f->printll();
+  // MODULE 6
+  writeToFile(rearrangeByEvenOddLength(p->head));
+  
   return 0;
 
 }
