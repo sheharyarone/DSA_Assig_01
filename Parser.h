@@ -9,12 +9,13 @@ string filename; // stores filename
 void readFileData(linkedList *headNode) // reads text from a file and writes it to the AVL tree
 {
   Dictionary *dict;
-  string word, meaning;
+  string word, meaning,filename;
   fstream fin;
+  
   cout << "\e[46mEnter the filename\x1b[0m ";
-  // cin.ignore();
-  // cin>>filename;
-  fin.open("words.txt");
+  cin>>filename;
+  filename="srcFile/"+filename+".txt";
+  fin.open(filename);
   if (fin.is_open())
     cout << "\e[0;32mFile reading succesful.\x1b[0m\n";
 
@@ -35,11 +36,10 @@ void writeToFile(node *headNode) // write the linked list to a text file
   string word, meaning;
 
   fstream dictFile; // create fstream object for the file
-  cout << "\e[46mEnter the filename\x1b[0m ";
-  // cin.ignore();
-  // cin >> filename;
-
-  dictFile.open("writing_words.txt", std::ios::app); // create/open a text file in append mode. new information is always added to the end
+  string filename;
+  cin>>filename;
+  filename="outputFiles/"+filename+".txt";
+  dictFile.open(filename, std::ios::app); // create/open a text file in append mode. new information is always added to the end
 
   node *iterator = headNode;
 
@@ -63,14 +63,14 @@ void printReverse(node *headNode)
   }
 }
 
-linkedList *reverseList(linkedList *headNode)
+node *reverseList(node *start,node*end) // (node *start,node*end)
 {
   // returns a linked list that is the reverse of the original list
   node *current, *next, *prev;
 
   prev = nullptr;
-  headNode->tail = headNode->head;
-  current = headNode->head;
+  end = start;
+  current = start;
   while (current != NULL)
   {
     next = current->next;
@@ -80,9 +80,9 @@ linkedList *reverseList(linkedList *headNode)
     prev = current;
     current = next;
   }
-  headNode->head = prev;
+  start = prev;
 
-  return headNode;
+  return start;
 }
 bool is_matching(node *p, char letter)
 {
@@ -97,17 +97,17 @@ bool is_matching(node *p, char letter)
   return false;
 }
 
-linkedList *filterByLetters(linkedList *headNode, char letter)
+node *filterByLetters(node * start, char letter) //(node *start)
 {
   // returns a linked list that contains only those words that have the
   node *loc, *ploc;
-  ploc = headNode->head;
+  ploc = start;
   node *temp;
   while (ploc != NULL)
   {
     if (is_matching(ploc, letter))
     {
-      headNode->head = ploc;
+      start = ploc;
       // cout<<headNode->head->data.word<<endl;
       loc = ploc->next;
       // cout<<loc->data.word<<endl;
@@ -136,12 +136,11 @@ linkedList *filterByLetters(linkedList *headNode, char letter)
     }
   }
   ploc->next = NULL;
-  headNode->tail = ploc;
 
-  return headNode;
+  return start;
 }
 
-linkedList *rearrangeByEvenOddLength(linkedList *headNode)
+linkedList *rearrangeByEvenOddLength(linkedList *headNode) 
 {
   // rearrange the list so that all the words with even length are at
   //  the front
