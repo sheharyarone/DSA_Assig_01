@@ -81,10 +81,65 @@ linkedList *reverseList(linkedList *headNode)
     current = next;
   }
   headNode->head = prev;
-  
+
   return headNode;
 }
+bool is_matching(node *p, char letter)
+{
+  string word = p->data.word;
+  for (int i = 0; i < word.length(); i++)
+  {
+    if (word[i] == letter)
+    {
+      return true;
+    }
+  }
+  return false;
+}
 
+linkedList *filterByLetters(linkedList *headNode, char letter)
+{
+  // returns a linked list that contains only those words that have the
+  node *loc, *ploc;
+  ploc = headNode->head;
+  node *temp;
+  while (ploc != NULL)
+  {
+    if (is_matching(ploc, letter))
+    {
+      headNode->head = ploc;
+      // cout<<headNode->head->data.word<<endl;
+      loc = ploc->next;
+      // cout<<loc->data.word<<endl;
+      break;
+    }
+    else
+    {
+      temp = ploc;
+      ploc = ploc->next;
+      delete temp;
+    }
+  }
+  while (loc != NULL)
+  {
+    if (is_matching(loc, letter))
+    {
+      ploc->next=loc;
+      ploc=loc;
+      loc=loc->next;
+    }
+    else
+    {
+      temp=loc;
+      loc=loc->next;
+      delete temp;
+    }
+  }
+  ploc->next=NULL;
+  headNode->tail=ploc;
+
+  return headNode;
+}
 // void mainMenu() //menu function
 // {
 //   string word, meaning; //stores the word and meaning
