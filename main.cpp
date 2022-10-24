@@ -4,11 +4,11 @@ using namespace std;
 
 int main()
 {
-  // mainMenu(); //call the main menu function from Parser.h
-  linkedList *p=new linkedList();
+  mainMenu(); //call the main menu function from Parser.h
+  // linkedList *p=new linkedList();
 
   // MPDULE 1
-  readFileData(p);
+  // readFileData(p);
   // cout<<"PRINTING NODES OF SINGLY LINKED LIST READ FROM FILE :"<<endl;
   // p->printll();
   // MODULE 2
@@ -25,7 +25,7 @@ int main()
   // writeToFile(filterByLetters(p->head,'i'));
 
   // MODULE 6
-  writeToFile(rearrangeByEvenOddLength(p->head));
+  // writeToFile(rearrangeByEvenOddLength(p->head));
   
   return 0;
 

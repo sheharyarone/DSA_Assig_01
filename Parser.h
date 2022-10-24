@@ -4,7 +4,6 @@
 #include "List.h"
 using namespace std;
 
-string filename; // stores filename
 
 void readFileData(linkedList *headNode) // reads text from a file and writes it to the AVL tree
 {
@@ -181,35 +180,36 @@ node *rearrangeByEvenOddLength(node *start)
   return start;
 }
 
-// void mainMenu() //menu function
-// {
-//   string word, meaning; //stores the word and meaning
-//   char choice;  //stores user choice for the actions
+void mainMenu() //menu function
+{
+  string word, meaning; //stores the word and meaning
+  char choice;  //stores user choice for the actions
+  linkedList *p=new linkedList();
 
-//   cout << "\e[1;35mInput 's' to terminate the program anytime.\e[0;37m" << endl;
-//   while (choice != 's') //while loop until 's' is entered
-//   {
-//     cout << "\n\x1b[36mPlease select an action: " << endl << endl;
-//     cout << "\t1. Read file data" << endl;
-//     cout << "\t2. Write to file" << endl;
+  cout << "\e[1;35mInput 's' to terminate the program anytime.\e[0;37m" << endl;
+  while (choice != 's') //while loop until 's' is entered
+  {
+    cout << "\n\x1b[36mPlease select an action: " << endl << endl;
+    cout << "\t1. Read file data" << endl;
+    cout << "\t2. Write to file" << endl;
 
-//     cout << "\x1b[0m"; cin >> choice; cout << endl;
-//     switch(choice)  //switch statement to check user input and calling respective functions
-//     {
-//       case('1'):
-//       {
-//         readFileData(list.start);
-//       }; break;
-//       case('2'):
-//       {
-//         writeToFile(list.start);
-//       }; break;
-//       case('s'):
-//       {
-//         cout << "\e[1;33mProgram terminated." << endl;
-//       }; break;
-//       default:
-//         cout << "\x1b[31mInvalid action selected!\x1b[37m" << endl;
-//     }
-//   }
-// }
+    cout << "\x1b[0m"; cin >> choice; cout << endl;
+    switch(choice)  //switch statement to check user input and calling respective functions
+    {
+      case('1'):
+      {
+        readFileData(p);
+      }; break;
+      case('2'):
+      {
+        writeToFile(p->head);
+      }; break;
+      case('s'):
+      {
+        cout << "\e[1;33mProgram terminated." << endl;
+      }; break;
+      default:
+        cout << "\x1b[31mInvalid action selected!\x1b[37m" << endl;
+    }
+  }
+}
