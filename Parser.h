@@ -11,7 +11,8 @@ void readFileData(linkedList **headNode) // reads text from a file and writes it
   fstream fin;
 
   cout << "\e[46mEnter the filename\x1b[0m ";
-  cin >> filename;
+  // cin >> filename;
+  filename="words";
   filename = "srcFile/" + filename + ".txt";
   fin.open(filename);
   if (fin.is_open())
@@ -47,6 +48,7 @@ void writeToFile(linkedList *headNode) // write the linked list to a text file
 
   fstream dictFile; // create fstream object for the file
   string filename;
+  cout<<"\e[0;32mEnter the File name to store DATA :.\x1b[0m\n";
   cin >> filename;
   filename = "outputFiles/" + filename + ".txt";
   dictFile.open(filename, std::ios::app); // create/open a text file in append mode. new information is always added to the end
@@ -93,12 +95,12 @@ linkedList *reverseList(linkedList *start) // (node *start,node*end)
 
   return start;
 }
-bool is_matching(linkedList *p, char letter)
+bool is_matching(linkedList *p, string letter)
 {
   string word = p->data.word;
   for (int i = 0; i < word.length(); i++)
   {
-    if (word[i] == letter)
+    if (word[i] == letter[0])
     {
       return true;
     }
@@ -106,7 +108,7 @@ bool is_matching(linkedList *p, char letter)
   return false;
 }
 
-linkedList *filterByLetters(linkedList *start, char letter) //(node *start)
+linkedList *filterByLetters(linkedList *start, string letter) //(node *start)
 {
   // returns a linked list that contains only those words that have the
   linkedList *loc, *ploc;
