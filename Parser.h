@@ -73,27 +73,26 @@ void printReverse(linkedList *headNode)
   }
 }
 
-// node *reverseList(node *start, node *end) // (node *start,node*end)
-// {
-//   // returns a linked list that is the reverse of the original list
-//   node *current, *next, *prev;
+linkedList *reverseList(linkedList *start) // (node *start,node*end)
+{
+  // returns a linked list that is the reverse of the original list
+  linkedList *current, *next, *prev;
 
-//   prev = nullptr;
-//   end = start;
-//   current = start;
-//   while (current != NULL)
-//   {
-//     next = current->next;
+  prev = nullptr;
+  current = start;
+  while (current != NULL)
+  {
+    next = current->next;
 
-//     current->next = prev;
+    current->next = prev;
 
-//     prev = current;
-//     current = next;
-//   }
-//   start = prev;
+    prev = current;
+    current = next;
+  }
+  start = prev;
 
-//   return start;
-// }
+  return start;
+}
 bool is_matching(linkedList *p, char letter)
 {
   string word = p->data.word;
@@ -148,48 +147,48 @@ linkedList *filterByLetters(linkedList *start, char letter) //(node *start)
   return start;
 }
 
-// node *rearrangeByEvenOddLength(node *start)
-// {
-//   // ploc will hold the ODD NODES AND THEIR LINKS
-//   // loc will hold the EVEN NODES AND THEIR LINKS
-//   node *oddFirst, *loc, *ploc, *sloc;
-//   sloc = start->next;
-//   ploc = start; // ODD ONE
-//   loc = start;  // EVEN ONE
-//   while (loc->data.word.length() % 2 != 0 && loc != NULL)
-//   {
-//     loc = loc->next;
-//   }
-//   while (ploc->data.word.length() % 2 == 0 && ploc != NULL)
-//   {
-//     ploc = ploc->next;
-//   }
-//   start = loc;
-//   oddFirst = ploc;
+linkedList *rearrangeByEvenOddLength(linkedList *start)
+{
+  // ploc will hold the ODD NODES AND THEIR LINKS
+  // loc will hold the EVEN NODES AND THEIR LINKS
+  linkedList *oddFirst, *loc, *ploc, *sloc;
+  sloc = start->next;
+  ploc = start; // ODD ONE
+  loc = start;  // EVEN ONE
+  while (loc->data.word.length() % 2 != 0 && loc != NULL)
+  {
+    loc = loc->next;
+  }
+  while (ploc->data.word.length() % 2 == 0 && ploc != NULL)
+  {
+    ploc = ploc->next;
+  }
+  start = loc;
+  oddFirst = ploc;
 
-//   while (sloc != nullptr)
-//   {
-//     if (sloc == ploc || sloc == loc)
-//     {
-//       sloc = sloc->next;
-//       continue;
-//     }
-//     if (sloc->data.word.length() % 2 == 0)
-//     {
-//       loc->next = sloc;
-//       loc = loc->next;
-//     }
-//     else
-//     {
-//       ploc->next = sloc;
-//       ploc = ploc->next;
-//     }
-//     sloc = sloc->next;
-//   }
-//   loc->next = oddFirst;
-//   ploc->next = nullptr;
-//   return start;
-// }
+  while (sloc != nullptr)
+  {
+    if (sloc == ploc || sloc == loc)
+    {
+      sloc = sloc->next;
+      continue;
+    }
+    if (sloc->data.word.length() % 2 == 0)
+    {
+      loc->next = sloc;
+      loc = loc->next;
+    }
+    else
+    {
+      ploc->next = sloc;
+      ploc = ploc->next;
+    }
+    sloc = sloc->next;
+  }
+  loc->next = oddFirst;
+  ploc->next = nullptr;
+  return start;
+}
 
 // void mainMenu() //menu function
 // {

@@ -1,13 +1,14 @@
 #include "Parser.h"
 
-using namespace std; 
+using namespace std;
 
 int main()
 {
   // mainMenu(); //call the main menu function from Parser.h
-  linkedList *headNode=new linkedList();
+  linkedList *headNode = new linkedList();
   readFileData(&headNode);
-  writeToFile(filterByLetters(headNode,'a'));
+  // writeToFile(filterByLetters(headNode,'a'));
+  writeToFile(reverseList(headNode));
   // MPDULE 1
   // readFileData(p);
   // cout<<"PRINTING NODES OF SINGLY LINKED LIST READ FROM FILE :"<<endl;
@@ -21,13 +22,12 @@ int main()
 
   // MODULE 4
   // writeToFile(reverseList(p->head,p->tail));
-  
+
   // MODULE 5
   // writeToFile(filterByLetters(p->head,'i'));
 
   // MODULE 6
   // writeToFile(rearrangeByEvenOddLength(p->head));
-  
-  return 0;
 
+  return 0;
 }
