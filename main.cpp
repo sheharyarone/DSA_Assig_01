@@ -4,9 +4,10 @@ using namespace std;
 
 int main()
 {
-  mainMenu(); //call the main menu function from Parser.h
-  // linkedList *p=new linkedList();
-
+  // mainMenu(); //call the main menu function from Parser.h
+  linkedList *headNode=new linkedList();
+  readFileData(&headNode);
+  printReverse(headNode);
   // MPDULE 1
   // readFileData(p);
   // cout<<"PRINTING NODES OF SINGLY LINKED LIST READ FROM FILE :"<<endl;
