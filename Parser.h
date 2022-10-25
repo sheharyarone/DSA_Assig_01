@@ -41,29 +41,29 @@ void readFileData(linkedList **headNode) // reads text from a file and writes it
   fin.close();
 }
 
-// void writeToFile(node *headNode) // write the linked list to a text file
-// {
-//   string word, meaning;
+void writeToFile(linkedList *headNode) // write the linked list to a text file
+{
+  string word, meaning;
 
-//   fstream dictFile; // create fstream object for the file
-//   string filename;
-//   cin >> filename;
-//   filename = "outputFiles/" + filename + ".txt";
-//   dictFile.open(filename, std::ios::app); // create/open a text file in append mode. new information is always added to the end
+  fstream dictFile; // create fstream object for the file
+  string filename;
+  cin >> filename;
+  filename = "outputFiles/" + filename + ".txt";
+  dictFile.open(filename, std::ios::app); // create/open a text file in append mode. new information is always added to the end
 
-//   node *iterator = headNode;
+  linkedList *iterator = headNode;
 
-//   while (iterator != NULL)
-//   { // iterate over the linked list
-//     word = iterator->data.word;
-//     meaning = iterator->data.meaning;
-//     dictFile << word;
-//     dictFile << " " << meaning << endl; // write to data file
-//     iterator = iterator->next;          // advance to next node
-//   }
-//   dictFile.close();
-//   cout << "\e[0;32mDictionary entries added.\x1b[0m\n";
-// }
+  while (iterator != NULL)
+  { // iterate over the linked list
+    word = iterator->data.word;
+    meaning = iterator->data.meaning;
+    dictFile << word;
+    dictFile << " " << meaning << endl; // write to data file
+    iterator = iterator->next;          // advance to next node
+  }
+  dictFile.close();
+  cout << "\e[0;32mDictionary entries added.\x1b[0m\n";
+}
 void printReverse(linkedList *headNode)
 {
   if (headNode != NULL)
@@ -94,59 +94,59 @@ void printReverse(linkedList *headNode)
 
 //   return start;
 // }
-// bool is_matching(node *p, char letter)
-// {
-//   string word = p->data.word;
-//   for (int i = 0; i < word.length(); i++)
-//   {
-//     if (word[i] == letter)
-//     {
-//       return true;
-//     }
-//   }
-//   return false;
-// }
+bool is_matching(linkedList *p, char letter)
+{
+  string word = p->data.word;
+  for (int i = 0; i < word.length(); i++)
+  {
+    if (word[i] == letter)
+    {
+      return true;
+    }
+  }
+  return false;
+}
 
-// node *filterByLetters(node *start, char letter) //(node *start)
-// {
-//   // returns a linked list that contains only those words that have the
-//   node *loc, *ploc;
-//   ploc = start;
-//   node *temp;
-//   while (ploc != NULL)
-//   {
-//     if (is_matching(ploc, letter))
-//     {
-//       start = ploc;
-//       loc = ploc->next;
-//       break;
-//     }
-//     else
-//     {
-//       temp = ploc;
-//       ploc = ploc->next;
-//       delete temp;
-//     }
-//   }
-//   while (loc != NULL)
-//   {
-//     if (is_matching(loc, letter))
-//     {
-//       ploc->next = loc;
-//       ploc = loc;
-//       loc = loc->next;
-//     }
-//     else
-//     {
-//       temp = loc;
-//       loc = loc->next;
-//       delete temp;
-//     }
-//   }
-//   ploc->next = NULL;
+linkedList *filterByLetters(linkedList *start, char letter) //(node *start)
+{
+  // returns a linked list that contains only those words that have the
+  linkedList *loc, *ploc;
+  ploc = start;
+  linkedList *temp;
+  while (ploc != NULL)
+  {
+    if (is_matching(ploc, letter))
+    {
+      start = ploc;
+      loc = ploc->next;
+      break;
+    }
+    else
+    {
+      temp = ploc;
+      ploc = ploc->next;
+      delete temp;
+    }
+  }
+  while (loc != NULL)
+  {
+    if (is_matching(loc, letter))
+    {
+      ploc->next = loc;
+      ploc = loc;
+      loc = loc->next;
+    }
+    else
+    {
+      temp = loc;
+      loc = loc->next;
+      delete temp;
+    }
+  }
+  ploc->next = NULL;
 
-//   return start;
-// }
+  return start;
+}
 
 // node *rearrangeByEvenOddLength(node *start)
 // {
